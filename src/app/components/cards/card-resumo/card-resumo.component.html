@@ -1,0 +1,20 @@
+    <div  [ngClass]="{'card-disabled': disabled}"  class="credit-card">
+        <div class="card-chip"></div>
+        <div class="card-number">**** **** **** {{digitosFinais}}</div>
+        <div class="card-holder">
+            <span>{{cardHolder}}</span>
+            <div>{{nome}}</div>
+            <div>Limite Utilizado: {{limiteUtilizado | currency:'BRL'}} <i class="fas fa-arrow-down text-danger"></i></div>
+            <div>Limite Restante: {{limiteRestante | currency:'BRL'}} <i class="fas fa-arrow-up text-success"></i></div>
+        </div>
+        <div class="card-expiry">
+            <span>FATURA</span>
+            <div>{{expires}}</div>
+        </div>
+        <div class="card-logo">
+            <img src="assets/img/Mastercard-logo.png" alt="Card Logo" width="50">
+        </div>
+    </div>
+    <div class="mt-2 text-center">
+        <i class="fas fa-money-bill-wave text-success"></i> Limite Total: <strong>{{limiteTotal | currency:'BRL'}}</strong>  
+    </div>

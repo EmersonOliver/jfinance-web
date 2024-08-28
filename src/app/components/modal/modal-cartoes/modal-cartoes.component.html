@@ -1,0 +1,99 @@
+<div class="modal-content ">
+    <div class="modal-header">
+        <h5 class="modal-title">{{metodo}} - Cartão </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="modal.dismiss('Cross click')"
+            aria-label="Close">
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="cartaoForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-sm-3 py-2">
+                    <label><small>Apelido:</small></label>
+                    <input type="text" id="apelido" formControlName="apelido" class="form-control" placeholder="Apelido">
+                </div>
+                <div class="col-sm-3 py-2">
+                    <label><small>4 Digitos Finais:</small></label>
+                    <input type="text" maxlength="4" max="4" formControlName="digitosFinais"  class="form-control" placeholder="4 dígitos finais">
+                </div>
+                <div class="col-sm-3 py-2">
+                    <label><small>Dia fechamento fatura:</small></label>
+                    <input type="text" maxlength="2" max="2" formControlName="diaFechamento"  class="form-control" placeholder="Dia Fechamento">
+                </div>
+                <div class="col-sm-3 py-2">
+                    <label><small>Dia Vencimento Fatura:</small></label>
+                    <input type="text" maxlength="2" max="2" formControlName="diaVencimento"  class="form-control" placeholder="Dia Vencimento">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 py-2">
+                    <label><small>Tipo Cartão:</small></label>
+                    <select name="tipoCartao" id="tipoCartao" formControlName="tipoCartao"  class="form-select">
+                        <option [value]="null">Selecione</option>
+                        <option [value]="'DEBITO'">Débito</option>
+                        <option [value]="'CREDITO'">Crédito</option>
+                        <option [value]="'CREDITO_VIRTUAL'">Cartão Crédito Virtual</option>
+                    </select>
+                </div>
+                <div class="col-sm-4 py-2">
+                    <label><small>Limite:</small></label>
+                    <input type="text" placeholder="Limite" formControlName="vlLimiteTotal"  class="form-control" >
+                </div>
+                <div class="col-sm-4 py-2">
+                    <label><small>Limite Utilizado:</small></label>
+                    <input type="text" placeholder="Limite Utilizado" formControlName="vlLimiteUtilizado"  class="form-control" >
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-12 py-2 text-center  ">
+                    <button *ngIf="!isEditar" class="btn btn-success btn-sm m-2" type="submit">Cadastrar</button>
+                    <button *ngIf="isEditar" class="btn btn-warning btn-sm m-2" type="submit">Salvar</button>
+                    <button *ngIf="isEditar" class="btn btn-secondary btn-sm m-2" (click)="resetForm()">Cancelar</button>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-sm-12 py-2">
+                <div class="card shadow">
+                    <div class="card-header"></div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover table-striped text-center">
+                              <thead class="thead-dark">
+                                <tr>
+                                  <th scope="col">Apelido</th>
+                                  <th scope="col">Dígitos Finais</th>
+                                  <th scope="col">Dia de Fechamento</th>
+                                  <th scope="col">Dia de Vencimento</th>
+                                  <th scope="col">Tipo de Cartão</th>
+                                  <th scope="col">Limite Total</th>
+                                  <th scope="col">Limite Utilizado</th>
+                                  <th scope="col">Ações</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let cartao of cartoes">
+                                  <td>{{ cartao.apelido }}</td>
+                                  <td>{{ cartao.digitosFinais }}</td>
+                                  <td>{{ cartao.diaFechamento }}</td>
+                                  <td>{{ cartao.diaVencimento }}</td>
+                                  <td>{{ cartao.tipoCartao }}</td>
+                                  <td>{{ cartao.vlLimiteTotal | currency:'BRL' }}</td>
+                                  <td>{{ cartao.vlLimiteUtilizado | currency:'BRL' }}</td>
+                                  <td>
+                                    <a class="text-primary" style="cursor: pointer;" (click)="preencherEditar(cartao)"><i class="fas fa-edit"></i></a>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-secondary"  data-bs-dismiss="modal" (click)="modal.dismiss('Cross click')">Fechar</button>
+    </div>
+</div>

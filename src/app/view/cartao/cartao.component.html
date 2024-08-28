@@ -1,0 +1,114 @@
+<div class="d-flex justify-content-around align-items-center mb-4">
+    <a [routerLink]="['/dashboard']" class="text-secondary">
+        <i class="fas fa-arrow-left"></i> Voltar
+    </a>
+    <h2 class="text-center">Detalhes do Cartão</h2>
+</div>
+
+<div class="data-container">
+    <div class="card mb-4">
+        <div class="card-header">Informações do Cartão</div>
+        <div class="card-body">
+            <p><strong>Apelido:</strong> <span id="apelido">{{card?.apelido}}</span></p>
+            <p><strong>Dígitos Finais:</strong> <span id="digitosFinais">{{card?.digitosFinais}}</span></p>
+            <p><strong>Dia de Fechamento:</strong> <span id="diaFechamento">{{card?.diaFechamento}}</span></p>
+            <p><strong>Dia de Vencimento:</strong> <span id="diaVencimento">{{card?.diaVencimento}}</span></p>
+            <p><strong>Tipo de Cartão:</strong> <span id="tipoCartao">{{card?.tipoCartao}}</span></p>
+            <p><strong>Limite Total:</strong> <span id="vlLimiteTotal">{{card?.vlLimiteTotal | currency:'BRL'}}</span>
+            </p>
+            <p><strong>Limite Utilizado:</strong> <span id="vlLimiteUtilizado">{{card?.vlLimiteUtilizado |
+                    currency:'BRL'}}</span></p>
+        </div>
+    </div>
+    <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+        <form [formGroup]="filtroForm">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 py-2">
+                        <label style="font-weight: bold;">Data Fatura:</label>
+                        <input type="text" formControlName="periodo" placeholder="Selecione um período"
+                            class="form-control" [bsConfig]="{
+                                        containerClass: 'theme-default',
+                                        showWeekNumbers: false,
+                                        isAnimated: true
+                                    }" bsDaterangepicker required>
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-md-6 py-2">
+                        <button class="btn btn-primary" type="button">Buscar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div *ngIf="card?.faturas?.length == 0" class="card mb-4">
+        <div class="card-header">Lista de Faturas</div>
+        <div class="card-body">
+            <div class="table-responsive text-center">
+                Não há faturas
+            </div>
+        </div>
+    </div>
+    <div *ngIf="card?.faturas!.length > 0" class="card mb-4">
+        <div class="card-header">Lista de Faturas</div>
+        <div class="card-body">
+            <div class="table-responsive text-center">
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID Fatura</th>
+                            <th>Valor Fatura</th>
+                            <th>Situação Fatura</th>
+                            <th>Data Geração</th>
+                            <th>Data Vencimento</th>
+                            <th>Nome do Cartão</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let fatura of card?.faturas">
+                            <td>{{ fatura.idFatura }}</td>
+                            <td>{{ fatura.vlFatura | currency:'BRL' }}</td>
+                            <td>{{ fatura.situacaoFatura }}</td>
+                            <td>{{ fatura.dataFaturaGerada | date:'dd/MM/yyyy HH:mm' }}</td>
+                            <td>{{ fatura.dataFaturaVencimento | date:'dd/MM/yyyy' }}</td>
+                            <td>{{ fatura.cartao.apelido }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">Lista de Compras</div>
+        <div class="card-body">
+            <div class="table-responsive text-center">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Descrição</th>
+                            <th scope="col">Tipo de Lançamento</th>
+                            <th scope="col">Quantidade de Parcelas</th>
+                            <th scope="col">Valor da Compra</th>
+                            <th scope="col">Data da Compra</th>
+                            <th scope="col">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let compra of card?.compras">
+                            <td>{{compra?.descricao}}</td>
+                            <td>{{compra?.tipoLancamento}}</td>
+                            <td>{{compra?.qtdParcelas}}</td>
+                            <td>{{compra?.valorCompra | currency:'BRL'}}</td>
+                            <td>{{compra?.dataCompra | date:'dd/MM/yyyy'}}</td>
+                            <td><button title="Visualizar Parcelas" (click)="abrirModal(compra)" type="button"
+                                    class="btn btn-primary btn-sm"><i class="fas fa-search"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

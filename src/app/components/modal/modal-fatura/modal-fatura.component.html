@@ -1,0 +1,38 @@
+<div class="modal-content ">
+    <div class="modal-header">
+        <h5 class="modal-title">Detalhes </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="modal.dismiss('Cross click')"
+            aria-label="Close">
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="table-responsive text-center">
+            <table class="table table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>ID Fatura</th>
+                        <th>Valor Fatura</th>
+                        <th>Situação Fatura</th>
+                        <th>Data Geração</th>
+                        <th>Data Vencimento</th>
+                        <th>Nome do Cartão</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let fatura of faturas">
+                        <td>{{ fatura.idFatura }}</td>
+                        <td>{{ fatura.vlFatura | currency:'BRL' }}</td>
+                        <td>{{ fatura.situacaoFatura }}</td>
+                        <td>{{ fatura.dataFaturaGerada | date:'dd/MM/yyyy HH:mm' }}</td>
+                        <td>{{ fatura.dataFaturaVencimento | date:'dd/MM/yyyy' }}</td>
+                        <td>{{ fatura.cartao.apelido }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+    </div>
+
+</div>

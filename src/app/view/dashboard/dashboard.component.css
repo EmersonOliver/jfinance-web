@@ -1,0 +1,27 @@
+.card-container {
+    position: relative;
+  }
+  
+  .delete-btn {
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    background-color: #dc3545;
+    border: none;
+    color: white;
+    /* border-radius: 50%; */
+    width:40px;
+    padding: 5px;
+    font-size: 16px;
+    display: none; /* Inicialmente escondido */
+  }
+  
+  .card-container:hover .delete-btn {
+    display: block; /* Mostrar ao passar o mouse */
+  }
+
+  .card-disabled {
+    opacity: 0.5;
+    pointer-events: none; /* Desabilita interações do usuário */
+    background-color: #f5f5f5; /* Cor de fundo para indicar desativado */
+  }

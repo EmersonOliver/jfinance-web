@@ -1,0 +1,61 @@
+<div class="modal-content ">
+    <div class="modal-header">
+        <h5 class="modal-title">Lançar Compras </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="modal.dismiss('Cross click')"
+            aria-label="Close">
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="comprasForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-sm-4 py-2">
+                    <label for="cartao"><small>Cartão:</small></label>
+                    <select name="cartao" id="cartao" class="form-select" formControlName="idCartao">
+                        <option [value]="null">Selecione</option>
+                        <option [value]="cartao!.idCartao" *ngFor="let cartao of cartoes">{{cartao!.apelido}}</option>
+                    </select>
+                </div>
+                <div class="col-sm-4 py-2">
+                    <label><small>Descrição:</small></label>
+                    <input type="text" placeholder="Descrição" formControlName="descricao" class="form-control">
+                </div>
+                <div class="col-sm-4 py-2">
+                    <label for="tipoLancamento"><small>Tipo Lançamento:</small></label>
+                    <select name="tipoLancamento" id="tipoLancamento" class="form-select" formControlName="tipoLancamento">
+                        <option [value]="null">Selecione</option>
+                        <option [value]="'PARCELADO'">Parcelado</option>
+                        <option [value]="'AVISTA'">Á Vista</option>
+                        <option [value]="'FINANCIAMENTO'">Financiamento</option>
+                        <option [value]="'EMPRESTIMO_CONSIGNADO'">Empréstimo Consignado</option>
+                        <option [value]="'DESCONTO'">Desconto</option>
+                        <option [value]="'PAGAMENTO'">Pagamento</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 py-2">
+                    <label ><small>Qtd Parcelas:</small></label>
+                    <input type="text" maxlength="2" placeholder="Qtd Parcelas" class="form-control" formControlName="qtdParcelas">
+                </div>
+                <div class="col-sm-4 py-2">
+                    <label ><small>Valor Compra:</small></label>
+                    <input type="text" placeholder="Valor compra" formControlName="valorCompra" class="form-control">
+                </div>
+                <div class="col-sm-4 py-2">
+                    <label ><small>Data Compra:</small></label>
+                    <input type="date" formControlName="dataCompra" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 py-2 text-center">
+                    <button class="btn btn-success btn-sm" type="submit">Enviar</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <div class="modal-footer">
+
+    </div>
+
+</div>

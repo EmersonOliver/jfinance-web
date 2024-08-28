@@ -1,0 +1,21 @@
+#dashboardButton.clicked {
+    transform: scale(0.9);
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  #dashboardButton {
+    transition: transform 0.2s ease-in-out;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  .text-shadow {
+    color: aliceblue;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* sombra preta com opacidade */
+}

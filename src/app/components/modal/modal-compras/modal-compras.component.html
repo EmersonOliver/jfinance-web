@@ -1,0 +1,34 @@
+<div class="modal-content ">
+    <div class="modal-header">
+        <h5 class="modal-title">Detalhes </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="modal.dismiss('Cross click')"
+            aria-label="Close">
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="table-responsive text-center">
+            <table class="table table-bordered table-striped">
+                <thead class="table-light">
+                    <tr>
+                        <th>Valor da Parcela</th>
+                        <th>Número da Parcela</th>
+                        <th>Data da Parcela</th>
+                        <th>Situação da Parcela</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let parcela of compra?.parcelas">
+                        <td>{{parcela?.valorParcela | currency:'BRL'}}</td>
+                        <td>{{parcela?.parcela}}</td>
+                        <td>{{parcela?.dataParcela | date:'dd/MM/yyyy'}}</td>
+                        <td>{{parcela?.situacao}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+    </div>
+
+</div>

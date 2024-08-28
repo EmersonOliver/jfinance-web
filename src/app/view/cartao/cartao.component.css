@@ -1,0 +1,8 @@
+.data-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+.card-header {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
