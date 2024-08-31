@@ -10,7 +10,12 @@ export interface CartaoResponse {
     tipoCartao:string;
     vlLimiteTotal:number;
     vlLimiteUtilizado:number;
+    vlLimiteRestante:number;
     icAtivo:boolean;
+    vlSaldo:number;
+    vlSaldoRestante:number;
+    vlSaldoUtilizado:number;
+    cartaoReferencia:string;
     compras: Array<ComprasResponse>;
     faturas:Array<FaturaResponse>;
 }

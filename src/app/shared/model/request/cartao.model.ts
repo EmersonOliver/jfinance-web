@@ -1,4 +1,5 @@
 export interface CartaoModel {
+    cartaoReferencia:string;
     apelido:string;
     digitosFinais:string;
     diaFechamento:number;
@@ -6,4 +7,5 @@ export interface CartaoModel {
     tipoCartao:string;
     vlLimiteTotal:number;
     vlLimiteUtilizado:number;
+    vlSaldo:number;
 }

@@ -1,0 +1,51 @@
+.app-border-success {
+    border-left: 1ch;
+    border-style: solid;
+    border-left-color: #1fa14f;
+}
+.credit-card-container {
+    position: relative;
+    display: inline-block;
+}
+
+.credit-card {
+    width: 100%;
+    max-width: 400px;
+    background-color: #37576a;
+    color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+.credit-card .card-number {
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+.credit-card .card-holder,
+.credit-card .card-expiry {
+    margin-bottom: 10px;
+}
+.credit-card .card-holder span,
+.credit-card .card-expiry span {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: #ccc;
+}
+.credit-card .card-logo {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+.credit-card .card-chip {
+    width: 50px;
+    height: 30px;
+    background-color: #d4af37;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+.card-disabled {
+    opacity: 0.5;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }

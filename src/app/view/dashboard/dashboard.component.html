@@ -48,11 +48,16 @@
 <div *ngFor="let group of groupedCards" class="row mb-5">
   <div class="col-sm-4 py-2" *ngFor="let card of group">
     <div class="card-container" >
-    <app-card-resumo style="cursor: pointer;" [routerLink]="['/cartao/',card.idCartao]" 
+    <app-card-resumo *ngIf="card.tipoCartao != 'DEBITO'" style="cursor: pointer;" [routerLink]="['/cartao/',card.idCartao]" 
       [title]=" card.vlLimiteTotal | currency:'BRL'" [cardHolder]="card.apelido"
       [limiteUtilizado]="card.vlLimiteUtilizado" [limiteRestante]="card.vlLimiteRestante"
       [limiteTotal]="card.vlLimiteTotal" [digitosFinais]="card.digitosFinais" [expires]="card.diaFechamento +'/09'" [disabled]="!card.icAtivo">
     </app-card-resumo>
+  <app-card-debito *ngIf="card.tipoCartao == 'DEBITO'" style="cursor: pointer;" [routerLink]="['/cartao/',card.idCartao]" 
+    [title]=" card.vlLimiteTotal | currency:'BRL'" [cardHolder]="card.apelido"
+    [saldoUtilizado]="card.vlSaldoUtilizado" [saldoRestante]="card.vlSaldoRestante"
+    [saldoReferencia]="card.vlSaldo" [digitosFinais]="card.digitosFinais"  [disabled]="!card.icAtivo">
+  </app-card-debito>
     <button *ngIf="card.icAtivo"  class="btn btn-danger delete-btn" (click)="deleteCard(card.idCartao)">
       <i class="fas fa-trash"></i>
     </button>

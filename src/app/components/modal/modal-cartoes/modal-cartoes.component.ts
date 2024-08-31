@@ -32,24 +32,39 @@ export class ModalCartoesComponent implements OnInit {
       diaVencimento: new FormControl(null),
       tipoCartao: new FormControl(null),
       vlLimiteTotal: new FormControl(null),
-      vlLimiteUtilizado: new FormControl(null)
+      vlLimiteUtilizado: new FormControl(null),
+      vlSaldo: new FormControl(null),
+      cartaoReferencia: new FormControl(null)
     });
   }
 
   preencherEditar(cartao: CartaoResponse) {
     this.metodo = 'Editar';
     this.isEditar = true;
-    this.cartaoForm = new FormGroup({
-      idCartao: new FormControl(cartao.idCartao),
-      apelido: new FormControl(cartao.apelido),
-      digitosFinais: new FormControl(cartao.digitosFinais),
-      diaFechamento: new FormControl(cartao.diaFechamento),
-      diaVencimento: new FormControl(cartao.diaVencimento),
-      tipoCartao: new FormControl(cartao.tipoCartao),
-      vlLimiteTotal: new FormControl(cartao.vlLimiteTotal),
-      vlLimiteUtilizado: new FormControl(cartao.vlLimiteUtilizado)
-    });
-
+    if(cartao.tipoCartao == 'DEBITO') {
+      this.cartaoForm = new FormGroup({
+        idCartao: new FormControl(cartao.idCartao),
+        apelido: new FormControl(cartao.apelido),
+        digitosFinais: new FormControl(cartao.digitosFinais),
+        diaFechamento: new FormControl(cartao.diaFechamento),
+        diaVencimento: new FormControl(cartao.diaVencimento),
+        tipoCartao: new FormControl(cartao.tipoCartao),
+        vlSaldo: new FormControl(cartao.vlSaldo),
+        vlLimiteTotal: new FormControl(cartao.vlLimiteTotal),
+        vlLimiteUtilizado: new FormControl(cartao.vlLimiteUtilizado)
+      });
+    }else{
+      this.cartaoForm = new FormGroup({
+        idCartao: new FormControl(cartao.idCartao),
+        apelido: new FormControl(cartao.apelido),
+        digitosFinais: new FormControl(cartao.digitosFinais),
+        diaFechamento: new FormControl(cartao.diaFechamento),
+        diaVencimento: new FormControl(cartao.diaVencimento),
+        tipoCartao: new FormControl(cartao.tipoCartao),
+        vlLimiteTotal: new FormControl(cartao.vlLimiteTotal),
+        vlLimiteUtilizado: new FormControl(cartao.vlLimiteUtilizado)
+      });
+    }
   }
 
   onSubmit() {
