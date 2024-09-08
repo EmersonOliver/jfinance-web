@@ -1,1 +1,126 @@
-<p>modal-carteira works!</p>
+<div class="modal-content ">
+    <div class="modal-header">
+        <h5 class="modal-title">Carteira </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="modal.dismiss('Cross click')"
+            aria-label="Close">
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="carteiraForm" (ngSubmit)="submit()">
+        <div class="row">
+            <div class="col-sm-3 py-2">
+                <label><small>Nome:</small></label>
+                <input type="text" placeholder="Nome" formControlName="nome" class="form-control">
+            </div>
+            <div class="col-sm-3 py-2">
+                <label><small>Agência:</small></label>
+                <input type="text" placeholder="Agência" formControlName="agencia" class="form-control">
+            </div>
+            <div class="col-sm-3 py-2">
+                <label><small>Conta:</small></label>
+                <input type="text" placeholder="Conta" formControlName="conta" class="form-control">
+            </div>
+            <div class="col-sm-3 py-2">
+                <label><small>DV:</small></label>
+                <input type="text" placeholder="DV" formControlName="dv" class="form-control">
+            </div>
+        </div>
+        <div class="row align-items-end">
+            <div class="col-sm-3 py-2">
+                <label><small>Valor:</small></label>
+                <input type="text" placeholder="Valor" formControlName="valor" class="form-control">
+            </div>
+            <div class="row">
+                <div class="col-sm-12 py-2 text-center  ">
+                    <button *ngIf="!isEditar" class="btn btn-success btn-sm m-2" type="submit">Cadastrar</button>
+                    <button *ngIf="isEditar" class="btn btn-warning btn-sm m-2" type="submit">Salvar</button>
+                    <button *ngIf="isEditar" class="btn btn-secondary btn-sm m-2" (click)="carteiraForm.reset">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+        <hr>
+        <div class="row mb-5">
+            <div class="col-sm-12 py-2">
+                <div class="card shadow">
+                    <div class="card-header">
+                        <h6>Carteira</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover table-striped text-center">
+                              <thead class="thead-dark">
+                                <tr>
+                                  <th scope="col">Nome Conta</th>
+                                  <th scope="col">Saldo</th>
+                                  <th scope="col">Conta Corrente</th>
+                                  <th scope="col">Ações</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let carteira of carteiras">
+                                  <td>{{ carteira.nome }}</td>
+                                  <td>{{ carteira.valor  | currency:'BRL'}}</td>
+                                  <td>{{ carteira.agencia }} {{carteira.conta}}-{{carteira.dv}}</td>
+                                  <td>
+                                    <div class="d-flex justify-content-evenly">
+                                        <div class="col-sm-3 py-2">
+                                            <a class="text-primary" style="cursor: pointer;" (click)="preencherEditar(carteira)" ><i class="fas fa-edit"></i></a>
+                                        </div>
+                                        <div class="col-sm-3 py-2">
+                                            <a title="Informações" class="text-info" style="cursor: pointer;" (click)="detalharCarteira(carteira)" ><i class="fas fa-info"></i></a>
+                                        </div>
+                                    </div>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="movimentacoes.length != 0" class="row mb-5">
+            <div class="col-sm-12 py-2">
+                <div class="row">
+                    <div class="col-sm-12 m-2">
+                        <label>Data Lançamento:</label>
+                        <input  type="text" placeholder="Selecione um período" class="form-control" (bsValueChange)="detalharCarteiraByMes($event)" [bsConfig]="{
+                          containerClass: 'theme-default',
+                          showWeekNumbers: false,
+                          isAnimated: true
+                        }" bsDaterangepicker required>
+                    </div>
+                </div>
+                <div class="card shadow">
+                    <div class="card-header">
+                        <h6 style="font-weight: bold;" class="text-danger">Movimentações - {{carteiraSelecionada.nome}}</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover table-striped text-center">
+                              <thead class="thead-dark">
+                                <tr>
+                                  <th scope="col">Descrição</th>
+                                  <th scope="col">Valor</th>
+                                  <th scope="col">Data</th>
+                                  <th scope="col">Movimentação</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let movimentacao of movimentacoes">
+                                  <td>{{ movimentacao.descricaoMovimento }}</td>
+                                  <td>{{ movimentacao.valor  | currency:'BRL'}}</td>
+                                  <td>{{ movimentacao.dtMovimentacao | date:'dd/MM/yyyy'}}</td>
+                                  <td [ngClass]="movimentacao.tipoMovimentacao == 'SAIDA'? 'text-danger' : 'text-success'" >{{ movimentacao.tipoMovimentacao }} <i [ngClass]="movimentacao.tipoMovimentacao == 'SAIDA'? 'fas fa-arrow-down' : 'fas fa-arrow-up'"></i> </td>
+                                  
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

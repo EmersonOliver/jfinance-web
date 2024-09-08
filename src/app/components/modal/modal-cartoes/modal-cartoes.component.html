@@ -82,9 +82,17 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
+                  
+                        <div class="col-sm-3 py-2">
+                            <label><small>Carteira:</small></label>
+                            <select name="Carteira" id="Carteira" class="form-select" formControlName="idCarteira" (change)="selectCarteira()">
+                                <option [value]="null">Selecione</option>
+                                <option *ngFor="let c of carteiras" [value]="c?.idCarteira">{{c?.nome}}</option>
+                            </select>
+                        </div>
                         <div class="col-sm-3 py-2">
                             <label><small>Saldo:</small></label>
-                            <input type="text" placeholder="Limite" formControlName="vlSaldo"  class="form-control" >
+                            <input type="text" placeholder="Saldo" [attr.disabled]="cartaoForm.get('tipoCartao')?.value == 'DEBITO'" formControlName="vlSaldo" class="form-control" >
                         </div>
                     </div>
                 </div>
@@ -121,7 +129,7 @@
                                   <td>{{ cartao.apelido }}</td>
                                   <td>{{ cartao.digitosFinais }}</td>
                                   <td>{{ cartao.tipoCartao }}</td>
-                                  <td>{{ (cartao.tipoCartao != 'DEBITO') ? (cartao.vlLimiteTotal | currency:'BRL') : (cartao?.vlSaldo  | currency:'BRL')  }}</td>
+                                  <td>{{ (cartao.tipoCartao != 'DEBITO') ? (cartao.vlLimiteTotal | currency:'BRL') : (cartao?.carteira?.valor  | currency:'BRL')  }}</td>
                                   <td>{{ (cartao.tipoCartao != 'DEBITO') ? (cartao?.vlLimiteUtilizado | currency:'BRL') : (cartao?.vlSaldoUtilizado  | currency:'BRL')  }}</td>
                                   <td>
                                     <a class="text-primary" style="cursor: pointer;" (click)="preencherEditar(cartao)"><i class="fas fa-edit"></i></a>

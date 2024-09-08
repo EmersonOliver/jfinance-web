@@ -5,6 +5,10 @@ import { ModalCartoesComponent } from '../components/modal/modal-cartoes/modal-c
 import { ReloadServiceService } from '../shared/reload-service.service';
 import { ModalComprasComponent } from '../components/modal/modal-compras/modal-compras.component';
 import { ModalLancamentosComponent } from '../components/modal/modal-lancamentos/modal-lancamentos.component';
+import { CarteiraService } from '../core/carteira.service';
+import { SaldoCarteiraResponse } from '../shared/model/response/carteira.response.model';
+import { ModalCarteiraComponent } from '../components/modal/modal-carteira/modal-carteira.component';
+import { ModalMovimentacoesComponent } from '../components/modal/modal-movimentacoes/modal-movimentacoes.component';
 
 @Component({
   selector: 'app-header',
@@ -15,9 +19,21 @@ export class HeaderComponent implements OnInit {
 
   @Output() updateDashboard: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private modal: NgbModal,private reloadService: ReloadServiceService) { }
+  constructor(private modal: NgbModal,private reloadService: ReloadServiceService, private cateiraService:CarteiraService) { }
 
-  ngOnInit(): void {}
+  saldoResponse!: SaldoCarteiraResponse;
+
+  ngOnInit(): void {
+    setTimeout(() => {
+      
+      this.cateiraService.loadSaldoCarteira().subscribe(
+        res=>{
+          this.saldoResponse = res.body ?? {saldo:0};
+        }
+      );
+    }, 100);
+
+  }
 
   abrirCartoes() {
     const ref = this.modal.open(ModalCartoesComponent, { size: 'lg', windowClass: 'fade-in' });
@@ -29,5 +45,12 @@ export class HeaderComponent implements OnInit {
   }
   abrirCompras() {
     const ref = this.modal.open(ModalLancamentosComponent,  { size: 'lg', windowClass: 'fade-in' });
+  }
+
+  abrirCarteira() {
+    const ref = this.modal.open(ModalCarteiraComponent, { size: 'lg', windowClass: 'fade-in' });
+  }
+  abrirMovimentacoes() {
+    const ref = this.modal.open(ModalMovimentacoesComponent, { size: 'lg', windowClass: 'fade-in' });
   }
 }

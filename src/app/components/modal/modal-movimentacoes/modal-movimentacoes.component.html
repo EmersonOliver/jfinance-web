@@ -1,0 +1,51 @@
+<div class="modal-content ">
+    <div class="modal-header">
+        <h5 class="modal-title">Movimentações </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="modal.dismiss('Cross click')"
+            aria-label="Close">
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="movimentacaoForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-sm-3 py-2">
+                    <label><small>Carteira:</small></label>
+                    <select name="idCarteira" id="idCarteira" class="form-select" formControlName="idCarteira">
+                        <option [value]="null">Selecione</option>
+                        <option *ngFor="let carteira of carteiras" [value]="carteira.idCarteira">{{carteira.nome}}</option>
+                    </select>
+                </div>
+                <div class="col-sm-3 py-2">
+                    <label><small>Descrição:</small></label>
+                    <input type="text" formControlName="descricaoMovimento" placeholder="Descrição" class="form-control">
+                </div>
+                <div class="col-sm-3 py-2">
+                    <label><small>Tipo Movimento:</small></label>
+                    <select name="tipoMovimento" id="tipoMovimento" formControlName="tipoMovimentacao" class="form-select">
+                        <option [value]="null">Selecione</option>
+                        <option [value]="'ENTRADA'">Entrada</option>
+                        <option [value]="'RESGATE'">Resgatar</option>
+                        <option [value]="'INVESTIMENTO'">Investimento</option>
+                        <option [value]="'SAIDA'">Saída</option>
+                    </select>
+                </div>
+                <div class="col-sm-3 py-2">
+                    <label><small>Valor:</small></label>
+                    <input type="text" formControlName="valor" placeholder="Valor" class="form-control">
+                </div>
+                <div class="col-sm-3 py-2">
+                    <label>Data Movimento:</label>
+                    <input type="date" formControlName="dtMovimentacao" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 py-2 text-center  ">
+                    <button *ngIf="!isEditar" class="btn btn-success btn-sm m-2" type="submit">Cadastrar</button>
+                    <button *ngIf="isEditar" class="btn btn-warning btn-sm m-2" type="submit">Salvar</button>
+                    <button *ngIf="isEditar" class="btn btn-secondary btn-sm m-2" (click)="movimentacaoForm.reset">Cancelar</button>
+                </div>
+            </div>
+        </form>
+      
+    </div>
+</div>

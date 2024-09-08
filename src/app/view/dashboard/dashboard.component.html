@@ -45,6 +45,15 @@
   
 </div>
 <hr>
+<div class="d-flex justify-content-center mb-5">
+  <h1>Cartões</h1>
+</div>
+<div class="row mb-5 d-flex justify-content-center">
+  <button class="btn btn-secondary" (click)="abrirModalCartao()">
+        <i class="fas fa-credit-card m-2"></i>
+        <i class="fas fa-plus"></i>
+</button>
+</div>
 <div *ngFor="let group of groupedCards" class="row mb-5">
   <div class="col-sm-4 py-2" *ngFor="let card of group">
     <div class="card-container" >
@@ -54,7 +63,7 @@
       [limiteTotal]="card.vlLimiteTotal" [digitosFinais]="card.digitosFinais" [expires]="card.diaFechamento +'/09'" [disabled]="!card.icAtivo">
     </app-card-resumo>
   <app-card-debito *ngIf="card.tipoCartao == 'DEBITO'" style="cursor: pointer;" [routerLink]="['/cartao/',card.idCartao]" 
-    [title]=" card.vlLimiteTotal | currency:'BRL'" [cardHolder]="card.apelido"
+    [title]=" card.vlSaldoUtilizado | currency:'BRL'" [cardHolder]="card.apelido"
     [saldoUtilizado]="card.vlSaldoUtilizado" [saldoRestante]="card.vlSaldoRestante"
     [saldoReferencia]="card.vlSaldo" [digitosFinais]="card.digitosFinais"  [disabled]="!card.icAtivo">
   </app-card-debito>

@@ -24,9 +24,8 @@
             <p><strong>Dígitos Finais:</strong> <span id="digitosFinais">{{card?.digitosFinais}}</span></p>
             <p><strong>Tipo de Cartão:</strong> <span id="tipoCartao">{{card?.tipoCartao}}</span></p>
             <p><strong>Saldo Total:</strong> <span id="vlSaldo">{{card?.vlSaldo | currency:'BRL'}}</span>
-            </p>
-            <p><strong>Saldo Utilizado:</strong> <span id="vlSaldoUtilizado">{{card?.vlSaldoUtilizado |
-                    currency:'BRL'}}</span></p>
+            <p><strong>Saldo Disponível:</strong> <span id="vlSaldo">{{card?.vlSaldoRestante | currency:'BRL'}}</span></p>
+            <p><strong>Saldo Utilizado:</strong> <span id="vlSaldoUtilizado">{{card?.vlSaldoUtilizado | currency:'BRL'}}</span></p>
         </div>
     </div>
     <div class="p-5 mb-4 bg-body-tertiary rounded-3">
@@ -52,7 +51,7 @@
             </div>
         </form>
     </div>
-    <div *ngIf="card?.faturas!.length == 0" class="card mb-4">
+    <div *ngIf="card?.tipoCartao != 'DEBITO' && card?.faturas!.length == 0" class="card mb-4">
         <div class="card-header">Lista de Faturas</div>
         <div class="card-body">
             <div class="table-responsive text-center">
@@ -60,7 +59,7 @@
             </div>
         </div>
     </div>
-    <div *ngIf="card?.faturas!.length > 0" class="card mb-4">
+    <div *ngIf="card?.tipoCartao != 'DEBITO' && card?.faturas!.length > 0" class="card mb-4">
         <div class="card-header">Lista de Faturas</div>
         <div class="card-body">
             <div class="table-responsive text-center">

@@ -2,7 +2,9 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CartaoService } from 'src/app/core/cartao.service';
+import { CarteiraService } from 'src/app/core/carteira.service';
 import { CartaoResponse } from 'src/app/shared/model/response/cartao.response.model';
+import { CarteiraResponse } from 'src/app/shared/model/response/carteira.response.model';
 
 @Component({
   selector: 'app-modal-cartoes',
@@ -16,16 +18,18 @@ export class ModalCartoesComponent implements OnInit {
   @Output() updateDashboard: EventEmitter<any> = new EventEmitter<any>();
 
 
-  constructor(public modal: NgbActiveModal, private cartaoService: CartaoService) { }
+  constructor(public modal: NgbActiveModal, private cartaoService: CartaoService, private carteiraService: CarteiraService) { }
 
   metodo = 'Incluir';
   isEditar = false;
   cartoes: CartaoResponse[] = [];
-  ngOnInit(): void {
-    this.cartaoService.listarTodos().subscribe(res => this.cartoes = res.body ?? []);
+  carteiras: CarteiraResponse[] = [];
 
+  ngOnInit(): void {
+    this.loadInit();
     this.cartaoForm = new FormGroup({
       idCartao: new FormControl(null),
+      idCarteira: new FormControl(null),
       apelido: new FormControl(null),
       digitosFinais: new FormControl(null),
       diaFechamento: new FormControl(null),
@@ -41,9 +45,10 @@ export class ModalCartoesComponent implements OnInit {
   preencherEditar(cartao: CartaoResponse) {
     this.metodo = 'Editar';
     this.isEditar = true;
-    if(cartao.tipoCartao == 'DEBITO') {
+    if (cartao.tipoCartao == 'DEBITO') {
       this.cartaoForm = new FormGroup({
         idCartao: new FormControl(cartao.idCartao),
+        idCarteira: new FormControl(cartao.idCarteira),
         apelido: new FormControl(cartao.apelido),
         digitosFinais: new FormControl(cartao.digitosFinais),
         diaFechamento: new FormControl(cartao.diaFechamento),
@@ -53,7 +58,7 @@ export class ModalCartoesComponent implements OnInit {
         vlLimiteTotal: new FormControl(cartao.vlLimiteTotal),
         vlLimiteUtilizado: new FormControl(cartao.vlLimiteUtilizado)
       });
-    }else{
+    } else {
       this.cartaoForm = new FormGroup({
         idCartao: new FormControl(cartao.idCartao),
         apelido: new FormControl(cartao.apelido),
@@ -68,21 +73,43 @@ export class ModalCartoesComponent implements OnInit {
   }
 
   onSubmit() {
-    if(!this.isEditar){
+    if (!this.isEditar) {
       console.log(this.cartaoForm.value)
       this.cartaoService.cadastrarCartao(this.cartaoForm.value).subscribe(
-        res=> {
+        res => {
           window.alert('Salvo com sucesso!');
           this.updateDashboard.emit();
+          this.loadInit();
+          this.resetForm();
         },
-       error => {window.alert('Ocorreu um erro ->'+ error.message)}) 
+        error => { window.alert('Ocorreu um erro ->' + error.message) })
+    } else {
+      this.cartaoService.atualizarCartao(this.cartaoForm.get('idCartao')?.value, this.cartaoForm.value).subscribe(res => window.alert('Atualizado com sucesso!'), error => window.alert('Houve um erro'))
+      this.loadInit();
     }
   }
+  loadInit() {
+    this.cartaoService.listarTodos().subscribe(res => this.cartoes = res.body ?? []);
+    this.carteiraService.loadlAllCarteiras().subscribe(
+      res => { 
+        this.carteiras = res.body ?? [];
+        this.carteiras = this.carteiras.filter(x=> x.idCartao == null);
+      },
+      error => { 
+        window.alert(error) 
+      });
+  }
 
-  resetForm(){
+  resetForm() {
     this.cartaoForm.reset();
     this.isEditar = false;
     this.metodo = 'Incluir';
+  }
+
+  selectCarteira() {
+    let valorCarteiraSelecionada = this.carteiras.find(map => map.idCarteira == this.cartaoForm.get('idCarteira')?.value)?.valor;
+    this.cartaoForm.get("vlSaldo")?.setValue(valorCarteiraSelecionada);
+    console.log(this.cartaoForm.value)
   }
 
 }

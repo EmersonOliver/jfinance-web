@@ -12,6 +12,10 @@ export class CartaoService {
     return this.http.get<any>(`/api/cartao/inativar/${id}`, {observe:'response'});
   }
 
+  atualizarCartao(id:string, request:any) :Observable<HttpResponse<any>>{
+    return this.http.put<any>(`/api/cartao/atualizar/${id}`, request, {observe:'response'});
+  }
+
   constructor(private http:HttpClient) { }
 
   loadCartaoById(id:string):Observable<HttpResponse<CartaoResponse>>{

@@ -25,6 +25,7 @@ import { ModalFaturaComponent } from './components/modal/modal-fatura/modal-fatu
 import { HomeComponent } from './view/home/home.component';
 import { ModalLancamentosComponent } from './components/modal/modal-lancamentos/modal-lancamentos.component';
 import { CardDebitoComponent } from './components/cards/card-debito/card-debito.component';
+import { ModalMovimentacoesComponent } from './components/modal/modal-movimentacoes/modal-movimentacoes.component';
 defineLocale('pt-br', ptBrLocale);
 
 @NgModule({
@@ -43,7 +44,8 @@ defineLocale('pt-br', ptBrLocale);
     ModalFaturaComponent,
     HomeComponent,
     ModalLancamentosComponent,
-    CardDebitoComponent
+    CardDebitoComponent,
+    ModalMovimentacoesComponent
   ],
   imports: [
     BrowserModule,

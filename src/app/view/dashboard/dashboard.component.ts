@@ -10,6 +10,7 @@ import { ModalFaturaComponent } from 'src/app/components/modal/modal-fatura/moda
 import { Subscription } from 'rxjs';
 import { ReloadServiceService } from 'src/app/shared/reload-service.service';
 import { CartaoService } from 'src/app/core/cartao.service';
+import { ModalCartoesComponent } from 'src/app/components/modal/modal-cartoes/modal-cartoes.component';
 
 
 @Component({
@@ -92,6 +93,10 @@ export class DashboardComponent implements OnInit {
       window.alert('Cartao inativado');
       window.location.reload();
     });
+  }
+
+  abrirModalCartao(){
+    this.modal.open(ModalCartoesComponent, { size: 'lg', windowClass: 'fade-in' });
   }
 
 }

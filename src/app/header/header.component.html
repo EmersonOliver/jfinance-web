@@ -16,16 +16,17 @@
               Lançamentos
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" style="cursor: pointer;">Carteira</a></li>
+              <li><a class="dropdown-item" style="cursor: pointer;" (click)="abrirCarteira()">Carteira</a></li>
               <li><a class="dropdown-item" style="cursor: pointer;" (click)="abrirCartoes()">Cartões</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" style="cursor: pointer;" (click)="abrirCompras()">Compras</a></li>
+              <li><a class="dropdown-item" style="cursor: pointer;" (click)="abrirMovimentacoes()">Movimentações</a></li>
             </ul>
           </li>
         </ul>
         <ul class="navbar-nav mb-2 mb-lg-0">
         <li class="nav-item">
-            <a  title="Saldo em conta corrente" class="nav-link"><i class="fas fa-wallet"></i> R$0,00</a>
+            <a  title="Saldo em conta corrente" class="nav-link"><i class="fas fa-wallet"></i> {{saldoResponse?.saldo | currency:'BRL'}}</a>
           </li>
         </ul>
       </div>

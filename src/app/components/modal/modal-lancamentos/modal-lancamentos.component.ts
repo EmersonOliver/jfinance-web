@@ -36,7 +36,7 @@ export class ModalLancamentosComponent implements OnInit {
   }
   onSubmit(){
     console.log(this.comprasForm.value)
-    this.comprasService.cadastrarCompra(this.comprasForm.value).subscribe(res=> window.alert('Cadastro com sucesso!'));
+    this.comprasService.cadastrarCompra(this.comprasForm.value).subscribe(res=> window.alert('Cadastro com sucesso!'), error=> window.alert(error.message));
     
   }
   formatDate(date: Date): string {
