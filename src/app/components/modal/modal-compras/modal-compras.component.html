@@ -21,7 +21,11 @@
                         <td>{{parcela?.valorParcela | currency:'BRL'}}</td>
                         <td>{{parcela?.parcela}}</td>
                         <td>{{parcela?.dataParcela | date:'dd/MM/yyyy'}}</td>
-                        <td>{{parcela?.situacao}}</td>
+                        <td>
+                            <select name="situacao" id="situacao" (change)="changeSituacao(parcela.idParcela, parcela.situacao)"  [(ngModel)]="parcela.situacao" class="form-select">
+                                <option *ngFor="let s of situacaoParcela" [value]="s.situacao">{{s.situacao}}</option>
+                            </select>
+                        </td>
                     </tr>
                 </tbody>
             </table>

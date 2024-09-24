@@ -6,7 +6,7 @@
 </div>
 
 <div class="data-container">
-    <div class="card mb-4">
+    <div class="card shadow mb-4">
         <div class="card-header">Informações do Cartão</div>
         <div *ngIf="card?.tipoCartao != 'DEBITO'" class="card-body">
             <p><strong>Apelido: </strong> <span id="apelido">{{card?.apelido}}</span></p>
@@ -51,10 +51,10 @@
             </div>
         </form>
     </div>
-    <div *ngIf="card?.tipoCartao != 'DEBITO' && card?.faturas!.length == 0" class="card mb-4">
+    <div *ngIf="card?.tipoCartao != 'DEBITO' && card?.faturas!.length == 0" class="card shadow mb-4">
         <div class="card-header">Lista de Faturas</div>
         <div class="card-body">
-            <div class="table-responsive text-center">
+            <div class="table-responsive text-center alert alert-info">
                 Não há faturas
             </div>
         </div>
@@ -88,7 +88,7 @@
             </div>
         </div>
     </div>
-    <div class="card">
+    <div class="card shadow mb-5">
         <div class="card-header">Lista de Compras</div>
         <div class="card-body">
             <div class="table-responsive text-center">
