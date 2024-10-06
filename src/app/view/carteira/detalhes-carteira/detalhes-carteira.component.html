@@ -1,0 +1,76 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card shadow mb-5">
+            <div class="card-header">
+                <div class="d-flex ">
+                    <div class="me-auto">
+                        <h6 class="card-title" style="font-weight: bold;">Detalhes das Contas</h6>
+                    </div>
+                    <div><button class="btn btn-primary btn-sm" type="button"(click)="abrirModalConta()"><i class="fas fa-plus"></i></button></div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover table-striped text-center">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Origem</th>
+                                <th scope="col">Conta</th>
+                                <th scope="col">Valor</th>
+                                <th scope="col">Data</th>
+                                <th scope="col">Data Vencimento</th>
+                                <th scope="col">Custo Fixo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let conta of contas">
+                                <td>{{conta?.origemConta}}</td>
+                                <td>{{conta?.tipoConta}}</td>
+                                <td>{{conta?.valorConta | currency:'BRL' }}</td>
+                                <td>{{conta?.dtConta | date:'dd/MM'}}</td>
+                                <td>{{conta?.dtVencimentoConta | date:'dd/MM'}}</td>
+                                <td>{{conta?.custoFixo ? 'Todo Mês': 'Mês atual'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card shadow mb-5">
+            <div class="card-header">
+                <h6 class="card-title"style="font-weight: bold;">Detalhes das Contas de Custo Fixo</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover table-striped text-center">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Origem</th>
+                                <th scope="col">Conta</th>
+                                <th scope="col">Valor</th>
+                                <th scope="col">Data</th>
+                                <th scope="col">Data Vencimento</th>
+                                <th scope="col">Custo Fixo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let conta of contas">
+                                <td>{{conta?.origemConta}}</td>
+                                <td>{{conta?.tipoConta}}</td>
+                                <td>{{conta?.valorConta | currency:'BRL' }}</td>
+                                <td>{{conta?.dtConta | date:'dd/MM'}}</td>
+                                <td>{{conta?.dtVencimentoConta | date:'dd/MM'}}</td>
+                                <td>{{conta?.custoFixo ? 'Todo Mês': 'Mês atual'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

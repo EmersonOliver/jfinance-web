@@ -26,6 +26,8 @@ import { HomeComponent } from './view/home/home.component';
 import { ModalLancamentosComponent } from './components/modal/modal-lancamentos/modal-lancamentos.component';
 import { CardDebitoComponent } from './components/cards/card-debito/card-debito.component';
 import { ModalMovimentacoesComponent } from './components/modal/modal-movimentacoes/modal-movimentacoes.component';
+import { DetalhesCarteiraComponent } from './view/carteira/detalhes-carteira/detalhes-carteira.component';
+import { ModalContasComponent } from './components/modal/modal-contas/modal-contas.component';
 defineLocale('pt-br', ptBrLocale);
 
 @NgModule({
@@ -45,7 +47,9 @@ defineLocale('pt-br', ptBrLocale);
     HomeComponent,
     ModalLancamentosComponent,
     CardDebitoComponent,
-    ModalMovimentacoesComponent
+    ModalMovimentacoesComponent,
+    DetalhesCarteiraComponent,
+    ModalContasComponent
   ],
   imports: [
     BrowserModule,

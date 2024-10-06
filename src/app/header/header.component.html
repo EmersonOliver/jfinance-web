@@ -26,7 +26,7 @@
         </ul>
         <ul class="navbar-nav mb-2 mb-lg-0">
         <li class="nav-item">
-            <a  title="Saldo em conta corrente" class="nav-link"><i class="fas fa-wallet"></i> {{saldoResponse?.saldo | currency:'BRL'}}</a>
+            <a  title="Saldo em conta corrente" [routerLink]="['/detalhes-carteira']" class="nav-link"><i class="fas fa-wallet"></i> {{saldoResponse?.saldo | currency:'BRL'}}</a>
           </li>
         </ul>
       </div>
