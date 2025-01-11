@@ -20,6 +20,12 @@
     display: block; /* Mostrar ao passar o mouse */
   }
 
+  .card-teste-emerson {
+    color: #dc3545;
+    background-color: aqua;
+    
+  }
+
   .card-disabled {
     opacity: 0.5;
     pointer-events: none; /* Desabilita interações do usuário */
