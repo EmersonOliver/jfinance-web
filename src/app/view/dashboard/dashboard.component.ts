@@ -58,7 +58,7 @@ export class DashboardComponent implements OnInit {
           this.spinner.hide();
         }
       );
-    }, 100);
+    }, 1000);
   }
 
   groupCards() {

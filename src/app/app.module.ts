@@ -28,6 +28,7 @@ import { CardDebitoComponent } from './components/cards/card-debito/card-debito.
 import { ModalMovimentacoesComponent } from './components/modal/modal-movimentacoes/modal-movimentacoes.component';
 import { DetalhesCarteiraComponent } from './view/carteira/detalhes-carteira/detalhes-carteira.component';
 import { ModalContasComponent } from './components/modal/modal-contas/modal-contas.component';
+import { OpentelemetryConfigService } from './core/config/opentelemetry-config.service';
 defineLocale('pt-br', ptBrLocale);
 
 @NgModule({
@@ -67,4 +68,8 @@ defineLocale('pt-br', ptBrLocale);
     { provide: BsDatepickerConfig, useValue: { showWeekNumbers: false }}],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  constructor(private opentelemetryConfigService: OpentelemetryConfigService) {
+    
+  }
+}
