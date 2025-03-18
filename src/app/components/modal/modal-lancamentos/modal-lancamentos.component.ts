@@ -30,7 +30,7 @@ export class ModalLancamentosComponent implements OnInit {
 
     this.cartaoService.listarTodos().subscribe(
       res=>{
-        this.cartoes = res.body 
+        this.cartoes = res.body?.filter(card => card.tipoCartao === 'CREDITO') || [];
       }
     )
   }

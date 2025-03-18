@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy-config proxy.config.js",
-    "build": "ng build",
+    "start": "SET NODE_OPTIONS=--openssl-legacy-provider && ng serve --proxy-config proxy.config.js",
+    "build": "SET NODE_OPTIONS=--openssl-legacy-provider && ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -25,6 +25,7 @@
     "@opentelemetry/instrumentation-xml-http-request": "^0.54.0",
     "@opentelemetry/sdk-trace-web": "^1.27.0",
     "bootstrap": "^5.3.3",
+    "jfinancao-web": "file:",
     "jquery": "^3.7.1",
     "ng-drag-drop": "^5.0.0",
     "ng-multiselect-dropdown": "^0.1.5",
